@@ -19,15 +19,18 @@ import com.example.falcon_ab.todosa.dialoge.AddingTaskDialogeFragment;
 import com.example.falcon_ab.todosa.fragment.CurrentTaskFragment;
 import com.example.falcon_ab.todosa.fragment.DoneTaskFragment;
 import com.example.falcon_ab.todosa.fragment.SplashFragment;
+import com.example.falcon_ab.todosa.fragment.TaskFragment;
 import com.example.falcon_ab.todosa.model.ModelTask;
 
-public class MainActivity extends AppCompatActivity implements AddingTaskDialogeFragment.AddingTaskListener{
+public class MainActivity extends AppCompatActivity
+        implements AddingTaskDialogeFragment.AddingTaskListener,
+        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
     TabAdapter tabAdapter;
-    CurrentTaskFragment currentTaskFragment;
-    DoneTaskFragment doneTaskFragment;
+    TaskFragment currentTaskFragment;
+    TaskFragment doneTaskFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,5 +127,15 @@ public class MainActivity extends AppCompatActivity implements AddingTaskDialoge
     @Override
     public void onTaskAddingCancel() {
         Toast.makeText(this, "Task adding cancel", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onTaskDone(ModelTask task) {
+        doneTaskFragment.addTask(task);
+    }
+
+    @Override
+    public void onTaskRestore(ModelTask task) {
+        currentTaskFragment.addTask(task);
     }
 }
