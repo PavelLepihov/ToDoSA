@@ -14,8 +14,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:layout_toRightOf="@+id/tvTaskDate"
-        android:layout_alignParentLeft="true"
-        android:text="tvTaskTitle"/>
+        android:layout_alignParentLeft="true"/>
 
     <TextView
         android:id="@+id/tvTaskDate"
@@ -24,7 +23,6 @@
         android:gravity="right"
         android:textColor="?android:attr/textColorSecondary"
         android:textSize="14sp"
-        android:text="tvTaskDate"
         android:layout_alignParentRight="true"
         android:layout_margin="16dp"/>
 
