@@ -3,6 +3,8 @@ package com.example.falcon_ab.todosa.model;
 
 import com.example.falcon_ab.todosa.R;
 
+import java.util.Date;
+
 public class ModelTask implements Item {
 
     public static final int PRIORITY_LOW = 0;
@@ -21,16 +23,19 @@ public class ModelTask implements Item {
     private long date;
     private int priority;
     private int status;
+    private long timeStamp;
 
     public ModelTask() {
         this.status = -1;
+        this.timeStamp = new Date().getTime();
     }
 
-    public ModelTask(String title, long date, int priority, int status) {
+    public ModelTask(String title, long date, int priority, int status, long timeStamp) {
         this.title = title;
         this.date = date;
         this.priority = priority;
         this.status = status;
+        this.timeStamp = timeStamp;
     }
 
     public int getPriorityColor() {
@@ -92,5 +97,13 @@ public class ModelTask implements Item {
 
     public void setStatus(int status) {
         this.status = status;
+    }
+
+    public long getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(long timeStamp) {
+        this.timeStamp = timeStamp;
     }
 }

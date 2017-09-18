@@ -12,7 +12,11 @@ import android.view.ViewGroup;
 
 import com.example.falcon_ab.todosa.R;
 import com.example.falcon_ab.todosa.adapter.CurrentTaskAdapter;
+import com.example.falcon_ab.todosa.database.DBHelper;
 import com.example.falcon_ab.todosa.model.ModelTask;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CurrentTaskFragment extends TaskFragment {
@@ -54,6 +58,17 @@ public class CurrentTaskFragment extends TaskFragment {
 
         // Inflate the layout for this fragment
         return rootView;
+    }
+
+    @Override
+    public void addTaskFromDB() {
+        List<ModelTask> tasks = new ArrayList<>();
+        tasks.addAll(activity.dbHelper.query().getTasks(DBHelper.SELECTION_STATUS + " OR "
+        + DBHelper.SELECTION_STATUS, new String[]{Integer.toString(ModelTask.STATUS_CURRENT),
+        Integer.toString(ModelTask.STATUS_OVERDUE)}, DBHelper.TASKS_DATE_COLUMN));
+        for (int i = 0; i < tasks.size(); i++) {
+            addTask(tasks.get(i), false);
+        }
     }
 
     @Override
