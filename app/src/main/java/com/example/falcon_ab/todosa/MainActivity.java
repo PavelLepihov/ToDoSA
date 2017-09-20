@@ -8,6 +8,7 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     TaskFragment currentTaskFragment;
     TaskFragment doneTaskFragment;
     public DBHelper dbHelper;
+    SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,6 +112,22 @@ public class MainActivity extends AppCompatActivity
                 .getItem(TabAdapter.CURRENT_TASK_FRAGMENT_POSITION);
         doneTaskFragment = (DoneTaskFragment) tabAdapter
                 .getItem(TabAdapter.DONE_TASK_FRAGMENT_POSITION);
+
+        searchView = (SearchView) findViewById(R.id.search_view);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                currentTaskFragment.findTasks(newText);
+                doneTaskFragment.findTasks(newText);
+                return false;
+            }
+        });
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

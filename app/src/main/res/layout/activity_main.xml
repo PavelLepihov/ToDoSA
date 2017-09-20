@@ -24,27 +24,36 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/app_bar_layout"
-        android:layout_height="wrap_content"
-        android:layout_width="match_parent">
-
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:layout_scrollFlags="scroll|enterAlways">
-    </android.support.v7.widget.Toolbar>
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <android.support.v7.widget.SearchView
+                android:id="@+id/search_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:searchIcon="@drawable/ic_search_white_24dp"
+                app:theme="@style/Theme.AppCompat.NoActionBar">
+
+            </android.support.v7.widget.SearchView>
+
+        </android.support.v7.widget.Toolbar>
 
         <android.support.design.widget.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:tabIndicatorColor="@android:color/background_light"
             app:tabSelectedTextColor="@android:color/background_light"
-            app:tabTextColor="@android:color/background_light"
-            app:layout_scrollFlags="scroll|enterAlways">
-        </android.support.design.widget.TabLayout>
+            app:tabTextColor="@android:color/background_light"></android.support.design.widget.TabLayout>
 
-</android.support.design.widget.AppBarLayout>
+    </android.support.design.widget.AppBarLayout>
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
