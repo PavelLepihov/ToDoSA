@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.falcon_ab.todosa.adapter.TabAdapter;
+import com.example.falcon_ab.todosa.alarm.AlarmHelper;
 import com.example.falcon_ab.todosa.database.DBHelper;
 import com.example.falcon_ab.todosa.dialoge.AddingTaskDialogeFragment;
 import com.example.falcon_ab.todosa.fragment.CurrentTaskFragment;
@@ -43,10 +44,25 @@ public class MainActivity extends AppCompatActivity
 
         PreferenceHelper.getInstance().init(getApplicationContext());
         preferenceHelper = PreferenceHelper.getInstance();
+
+        AlarmHelper.getInstance().init(getApplicationContext());
+
         dbHelper = new DBHelper(getApplicationContext());
         fragmentManager = getFragmentManager();
         runSplash();
         setUI();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        MyApplication.activityResumed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        MyApplication.activityPaused();
     }
 
     @Override

@@ -14,6 +14,7 @@ import com.example.falcon_ab.todosa.MainActivity;
 import com.example.falcon_ab.todosa.R;
 import com.example.falcon_ab.todosa.adapter.CurrentTaskAdapter;
 import com.example.falcon_ab.todosa.adapter.TaskAdapter;
+import com.example.falcon_ab.todosa.alarm.AlarmHelper;
 import com.example.falcon_ab.todosa.model.Item;
 import com.example.falcon_ab.todosa.model.ModelTask;
 
@@ -22,6 +23,7 @@ public abstract class TaskFragment extends Fragment {
     protected RecyclerView.LayoutManager layoutManager;
     protected TaskAdapter adapter;
     public MainActivity activity;
+    public AlarmHelper alarmHelper;
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public abstract class TaskFragment extends Fragment {
         if (getActivity() != null) {
             activity = (MainActivity) getActivity();
         }
+        alarmHelper = AlarmHelper.getInstance();
 
         addTaskFromDB();
     }
@@ -93,6 +96,7 @@ public abstract class TaskFragment extends Fragment {
                         @Override
                         public void onViewDetachedFromWindow(View v) {
                             if (isRemoved[0]) {
+                                alarmHelper.removeAlarm(timeStamp);
                                 activity.dbHelper.removeTask(timeStamp);
                             }
                         }

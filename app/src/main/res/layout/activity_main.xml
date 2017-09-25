@@ -37,6 +37,7 @@
                 android:id="@+id/search_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="right"
                 app:searchIcon="@drawable/ic_search_white_24dp"
                 app:theme="@style/Theme.AppCompat.NoActionBar">
 
@@ -51,7 +52,9 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:tabIndicatorColor="@android:color/background_light"
             app:tabSelectedTextColor="@android:color/background_light"
-            app:tabTextColor="@android:color/background_light"></android.support.design.widget.TabLayout>
+            app:tabTextColor="@android:color/background_light">
+
+        </android.support.design.widget.TabLayout>
 
     </android.support.design.widget.AppBarLayout>
     <android.support.design.widget.FloatingActionButton
