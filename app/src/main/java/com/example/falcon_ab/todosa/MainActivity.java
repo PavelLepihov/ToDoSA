@@ -18,7 +18,8 @@ import android.widget.Toast;
 import com.example.falcon_ab.todosa.adapter.TabAdapter;
 import com.example.falcon_ab.todosa.alarm.AlarmHelper;
 import com.example.falcon_ab.todosa.database.DBHelper;
-import com.example.falcon_ab.todosa.dialoge.AddingTaskDialogeFragment;
+import com.example.falcon_ab.todosa.dialog.AddingTaskDialogFragment;
+import com.example.falcon_ab.todosa.dialog.EditTaskDialogFragment;
 import com.example.falcon_ab.todosa.fragment.CurrentTaskFragment;
 import com.example.falcon_ab.todosa.fragment.DoneTaskFragment;
 import com.example.falcon_ab.todosa.fragment.SplashFragment;
@@ -26,8 +27,9 @@ import com.example.falcon_ab.todosa.fragment.TaskFragment;
 import com.example.falcon_ab.todosa.model.ModelTask;
 
 public class MainActivity extends AppCompatActivity
-        implements AddingTaskDialogeFragment.AddingTaskListener,
-        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener {
+        implements AddingTaskDialogFragment.AddingTaskListener,
+        CurrentTaskFragment.OnTaskDoneListener, DoneTaskFragment.OnTaskRestoreListener,
+        EditTaskDialogFragment.EditingTaskListener {
 
     FragmentManager fragmentManager;
     PreferenceHelper preferenceHelper;
@@ -150,7 +152,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DialogFragment addingTaskDialogFragment = new AddingTaskDialogeFragment();
+                DialogFragment addingTaskDialogFragment = new AddingTaskDialogFragment();
                 addingTaskDialogFragment.show(fragmentManager, "AddingTaskDialogFragment");
             }
         });
@@ -174,5 +176,11 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void onTaskRestore(ModelTask task) {
         currentTaskFragment.addTask(task, false);
+    }
+
+    @Override
+    public void onTaskEdited(ModelTask updatedTask) {
+        currentTaskFragment.updateTask(updatedTask);
+        dbHelper.update().task(updatedTask);
     }
 }

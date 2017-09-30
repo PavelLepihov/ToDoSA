@@ -1,4 +1,4 @@
-package com.example.falcon_ab.todosa.dialoge;
+package com.example.falcon_ab.todosa.dialog;
 
 
 import android.app.Dialog;

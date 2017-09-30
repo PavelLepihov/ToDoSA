@@ -1,11 +1,10 @@
-package com.example.falcon_ab.todosa.dialoge;
+package com.example.falcon_ab.todosa.dialog;
 
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
@@ -28,7 +27,7 @@ import com.example.falcon_ab.todosa.model.ModelTask;
 
 import java.util.Calendar;
 
-public class AddingTaskDialogeFragment extends DialogFragment {
+public class AddingTaskDialogFragment extends DialogFragment {
 
     private AddingTaskListener addingTaskListener;
 
