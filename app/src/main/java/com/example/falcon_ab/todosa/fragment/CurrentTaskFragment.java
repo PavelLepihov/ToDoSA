@@ -87,6 +87,14 @@ public class CurrentTaskFragment extends TaskFragment {
     }
 
     @Override
+    public void checkAdapter() {
+        if (adapter == null) {
+            adapter = new CurrentTaskAdapter(this);
+            addTaskFromDB();
+        }
+    }
+
+    @Override
     public void addTask(ModelTask newTask, boolean saveToDB) {
         int position = -1;
         ModelSeparator separator = null;

@@ -84,6 +84,14 @@ public class DoneTaskFragment extends TaskFragment {
     }
 
     @Override
+    public void checkAdapter() {
+        if (adapter == null) {
+            adapter = new DoneTaskAdapter(this);
+            addTaskFromDB();
+        }
+    }
+
+    @Override
     public void addTask(ModelTask newTask, boolean saveToDB) {
         int position = -1;
         for (int i = 0; i < adapter.getItemCount(); i++) {

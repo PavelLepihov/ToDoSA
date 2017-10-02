@@ -44,6 +44,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        Ads.showBanner(this);
+
         PreferenceHelper.getInstance().init(getApplicationContext());
         preferenceHelper = PreferenceHelper.getInstance();
 
@@ -53,6 +55,11 @@ public class MainActivity extends AppCompatActivity
         fragmentManager = getFragmentManager();
         runSplash();
         setUI();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+
     }
 
     @Override
